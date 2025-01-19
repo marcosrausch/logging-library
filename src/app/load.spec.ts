@@ -1,8 +1,8 @@
-const server = require('./server');
+const load = require('./load');
 
-describe('server tests', runServerSpecs);
+describe('server tests', runLoaderSpecs);
 
-function runServerSpecs(): void {
+function runLoaderSpecs(): void {
     shouldGetPortFromEnv();
     shouldReturnDefaultPort();
 }
@@ -15,7 +15,7 @@ function getPortFromEnv(): void {
     process.env.PORT = '9001';
     const portEnv: string = process.env.PORT;
     const expected: number = parseInt(portEnv, 10);
-    const actual: number = server.getPort();
+    const actual: number = load.getPort();
     
     expect(actual).toBe(expected);
 }
@@ -26,8 +26,8 @@ function shouldReturnDefaultPort(): void {
 
 function getDefaultPort(): void {
     process.env.PORT = null;
-    const expected: number = 8080;
-    const actual: number = server.getPort();
+    const expected: number = 8081;
+    const actual: number = load.getPort();
     
     expect(actual).toBe(expected);
 }
