@@ -1,4 +1,5 @@
 const load = require('./load');
+const source = require('./data/source');
 
 load.env();
 
@@ -17,5 +18,11 @@ function start(): void {
     app.listen(PORT, load.startServerLog(PORT));
 }
 
-setup();
-start();
+source.data.initialize().
+    then(() => {
+        source.success();
+        setup();
+        start();
+    }).
+    catch(err => source.init.failure(err))
+
