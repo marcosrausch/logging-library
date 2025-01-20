@@ -1,9 +1,10 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { EntityConfig } from "../structs";
+import { Lesson } from "./lesson";
 
 const config: EntityConfig = {
     name: "COURSES"
-}
+};
 
 @Entity(config)
 export class Course {
@@ -25,6 +26,9 @@ export class Course {
 
     @Column()
     sequence: number;
+
+    @OneToMany(() => Lesson, l => l.course)
+    lessons: Lesson[];
 
     @CreateDateColumn()
     createdAt: Date;
