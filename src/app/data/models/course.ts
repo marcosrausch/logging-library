@@ -2,11 +2,11 @@ import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, Up
 import { EntityConfig } from "../structs";
 import { Lesson } from "./lesson";
 
-const config: EntityConfig = {
+const entity: EntityConfig = {
     name: "COURSES"
 };
 
-@Entity(config)
+@Entity(entity)
 export class Course {
 
     @PrimaryGeneratedColumn()

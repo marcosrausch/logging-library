@@ -1,13 +1,17 @@
-import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import { EntityConfig } from "../structs";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { EntityConfig, JoinConfig } from "../structs";
 import { Course } from "./course";
 
 
-const config: EntityConfig = {
+const entity: EntityConfig = {
     name: "LESSONS"
 };
 
-@Entity(config)
+const join: JoinConfig = {
+    name: "courseId"
+};
+
+@Entity(entity)
 export class Lesson {
     @PrimaryGeneratedColumn()
     id: number;
@@ -22,6 +26,7 @@ export class Lesson {
     sequence: number;
 
     @ManyToOne(() => Course, c => c.lessons)
+    @JoinColumn(join)
     course: Course;
 
     @CreateDateColumn()
