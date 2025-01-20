@@ -1,4 +1,6 @@
 import * as dotenv from 'dotenv';
+import { log } from '../logger';
+
 const load: dotenv.DotenvConfigOutput = dotenv.config();
 
 function envCheck(): void {
@@ -9,8 +11,6 @@ function envCheck(): void {
         console.log(`Environment variables loaded successfully`);
     }
 }
-
-import { log } from '../logger';
 
 function getPort(): number {
     const portString: string = process.env.PORT;
